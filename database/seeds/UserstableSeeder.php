@@ -11,6 +11,14 @@ class UserstableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        App\User::create([
+
+            'name' => 'admin',
+            'avatar' => asset('avatars/asian-girl-avatar-vector-20779172'),
+            'password' => bcrypt('admin'),
+            'email' => 'diamondheartconcepts@gmail.com',
+            'admin' => 1
+        ]);
     }
 }
+
