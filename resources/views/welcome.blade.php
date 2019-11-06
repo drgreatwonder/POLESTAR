@@ -49,18 +49,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        @if (Route::has('login'))
-                  <ul class="navbar-nav w-100 nav-justified">
-                    <li class="nav-item active">
 
-                            @auth
-                      <a class="nav-link links" href="{{ url('/home') }}">Home<span class="sr-only">(current)</span></a>
+                  <ul class="navbar-nav w-100 nav-justified">
+                        @if (Route::has('login'))
+                        @auth
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{{ url('/home') }}">HOME<span class="sr-only">(current)</span></a>
                     </li>
                     @else
 
                     <li class="nav-item links">
-                      <a class="nav-link" href="{{ url('/home') }}">HOME<span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a>
                     </li>
+
 
 
                     <li class="nav-item dropdown">
