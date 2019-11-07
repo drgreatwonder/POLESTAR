@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Response extends Model
 {
 
-    protected $guarded = [];
+    protected $fillable = [
+        'content', 'user_id', 'conversation_id'];
 
     public function conversation() {
 

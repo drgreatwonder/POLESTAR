@@ -34,7 +34,7 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
-        $medium = Medium::create($this->validateRequest());
+        // $medium = Medium::create($this->validateRequest());
     }
 
     /**
@@ -82,14 +82,14 @@ class ResponseController extends Controller
         //
     }
 
-    private function validateRequest() {
+    // private function validateRequest() {
 
-        return request()->validate([
+    //     return request()->validate([
 
-            'content' => 'required',
-            'user_id' => 'required',
-            'conversation_id' => 'required'
-            
-        ]);
-    }
+    //         'content' => 'required',
+    //         'user_id' => 'required',
+    //         'conversation_id' => 'required'
+
+    //     ]);
+    // }
 }

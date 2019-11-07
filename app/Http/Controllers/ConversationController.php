@@ -31,7 +31,9 @@ class ConversationController extends Controller
      */
 
    public function create() {
+
        $medium = Medium::all();
+
        return view('converse', compact('medium'));
    }
 
@@ -42,13 +44,33 @@ class ConversationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $medium = Medium::create($this->validateRequestMed());
 
-        $conversation = Conversation::create($this->validateRequestCon());
+    {
+        $r = request();
+        $this->validate($r, [
+
+            'medium_id' => 'required',
+            'content' =>'required',
+            'title' => 'required'
+        ]);
+
+        $conversation = Conversation::create([
+
+            'title' => $r->title,
+            'content' => $r->content,
+            'medium_id' => $r->medium_id,
+            'user_id' => Auth::id(),
+            'slug' => str_slug($r->title)
+
+        ]);
+
+        // $medium = Medium::create($this->validateRequestMed());
+
+        // $conversation = Conversation::create($this->validateRequestCon());
 
         Session::flash('success', 'Conversation created successfully.');
-        return redirect()->back();
+
+        return redirect()->route('conversation', ['slug' => $conversation->slug]);
     }
 
     /**
@@ -57,9 +79,11 @@ class ConversationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+
+        return view('conversations.show')->with('conversation', Conversation::where('slug', $slug)->first());
+
     }
 
     /**
@@ -96,26 +120,26 @@ class ConversationController extends Controller
         //
     }
 
-    private function validateRequestMed() {
+    // private function validateRequestMed() {
 
-        return request()->validate([
+    //     return request()->validate([
 
-            'title' => 'required',
-            'content' => 'required',
-            'user_id' => 'required',
-            'medium_id' => 'required'
-        ]);
-    }
+    //         'title' => 'required',
+    //         'content' => 'required',
+    //         'user_id' => 'required',
+    //         'medium_id' => 'required'
+    //     ]);
+    // }
 
-    private function validateRequestCon() {
+    // private function validateRequestCon() {
 
-        return request()->validate([
+    //     return request()->validate([
 
-            'title' => 'required',
-           'content' => 'required',
-           'medium_id' => 'required',
-           'user_id' => Auth::id(),
-           'slug' => str_slug(title)
-        ]);
-    }
+    //         'title' => 'required',
+    //        'content' => 'required',
+    //        'medium_id' => 'required',
+    //        'user_id' => Auth::id(),
+    //        'slug' => str_slug(title)
+    //     ]);
+    // }
 }

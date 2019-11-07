@@ -29,11 +29,23 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('medium', 'MediumController');
 
     Route::get('conversation/create', [
+
         'uses' => 'ConversationController@create',
         'as' => 'conversations.create'
     ]);
-    Route::post('conversations/store', [
+
+
+
+    Route::post('conversation/store', [
+
         'uses' => 'ConversationController@store',
         'as' => 'conversations.store'
+    ]);
+
+
+    Route::get('conversation/{slug}', [
+
+        'uses' => 'ConversationController@show',
+        'as' => 'conversation'
     ]);
 });

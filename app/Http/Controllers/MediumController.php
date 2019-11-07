@@ -114,16 +114,16 @@ class MediumController extends Controller
         Medium::destroy($id);
 
         Session::flash('success', 'Platform deleted successfully');
-        
+
         return redirect()->route('medium.index');
     }
 
-    // private function validateRequestMed() {
+    //  private function validateRequest() {
 
-    //     return request()->validate([
+    //      return request()->validate([
 
-    //         'medium' => 'required'
+    //          'medium' => 'required'
 
-    //     ]);
-    // }
+    //      ]);
+    //  }
 }

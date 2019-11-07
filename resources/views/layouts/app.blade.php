@@ -84,7 +84,7 @@
 
                         <br>
                         <br>
-
+                        
                         <div class="panel panel-default">
 
                             <div class="card-header text-center">PlatForms</div>
