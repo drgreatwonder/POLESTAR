@@ -75,7 +75,45 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+
+            <div class="container">
+
+                <div class="col-md-4 pb-3">
+
+                        <a href="{{ route('conversations.create') }}" class="form-control btn btn-primary my-4">Create a New Conversation</a>
+
+                        <br>
+                        <br>
+
+                        <div class="panel panel-default">
+
+                            <div class="card-header text-center">PlatForms</div>
+
+                            <div class="panel-body pt-2">
+
+                                <ul class="list-group">
+
+                                    @foreach ($medium as $media)
+
+                                    <li class="list-group-item">
+                                        {{ $media->title }}
+                                    </li>
+
+                                    @endforeach
+                                    {{-- @yield('table') --}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+
+                     @yield('content')
+                    </div>
+            </div>
+
         </main>
     </div>
 </body>

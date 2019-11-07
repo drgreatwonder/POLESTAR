@@ -31,7 +31,6 @@
                                     <td>
                                         {{ $media->title }}
                                     </td>
-                                    
                                     <td>
                                         <a href="{{ route('medium.edit', ['medium' => $media->id ])}}" class="btn btn-xs btn-info">Edit</a>
                                     </td>
@@ -39,7 +38,6 @@
                                         <form action="{{ route('medium.destroy', ['medium' => $media->id ])}}" method="post">
 
                                                 {{ csrf_field()}}
-
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-xs btn-danger" type="submit">Destroy</button>
                                         </form>
