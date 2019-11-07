@@ -15,6 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/converse', function() {
+
+    return view('/converse');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::resource('medium', 'MediumController');
+
+    Route::get('conversation/create', [
+        'uses' => 'ConversationController@create',
+        'as' => 'conversations.create'
+    ]);
+    Route::post('conversations/store', [
+        'uses' => 'ConversationController@store',
+        'as' => 'conversations.store'
+    ]);
+});

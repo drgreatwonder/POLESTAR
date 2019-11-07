@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+
+use App\Medium;
+
 use Illuminate\Http\Request;
 
 class MediumController extends Controller
@@ -13,7 +17,8 @@ class MediumController extends Controller
      */
     public function index()
     {
-        //
+        $medium = Medium::all();
+        return view('medium.index', compact('medium'));
     }
 
     /**
@@ -22,9 +27,9 @@ class MediumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-    }
+   {
+           return view('medium.create');
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -34,9 +39,27 @@ class MediumController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $medium = Medium::create($this->validateRequest());
 
+        // $medium = Medium::create($this->validateRequestMed());
+
+        // Medium::create([
+
+        //     'title' => $request->medium
+        // ]);
+
+        $this->validate($request, [
+
+            'medium' => 'required'
+        ]);
+
+        Medium::create([
+
+            'title' => $request->medium
+        ]);
+
+        Session::flash('success', 'PlatForm created.');
+
+        return redirect()->route('medium.index');
 
     }
 
@@ -59,7 +82,8 @@ class MediumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medium = Medium::find($id);
+        return view('medium.edit',compact('medium') );
     }
 
     /**
@@ -71,7 +95,12 @@ class MediumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $medium = Medium::find($id);
+        $medium->title = $request->medium;
+        $medium->save();
+
+        Session::flash('success', 'Platform edited successfully');
+        return redirect()->route('medium.index');
     }
 
     /**
@@ -82,14 +111,19 @@ class MediumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Medium::destroy($id);
+
+        Session::flash('success', 'Platform deleted successfully');
+        
+        return redirect()->route('medium.index');
     }
 
-    private function validateRequest() {
+    // private function validateRequestMed() {
 
-        return request()->validate([
+    //     return request()->validate([
 
-            'title' => 'required'
-        ]);
-    }
+    //         'medium' => 'required'
+
+    //     ]);
+    // }
 }

@@ -15,7 +15,7 @@ class UserstableSeeder extends Seeder
 
             'name' => 'admin',
             'avatar' => asset('avatars/asian-girl-avatar-vector-20779172'),
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('hungry4moreofYou'),
             'email' => 'diamondheartconcepts@gmail.com',
             'admin' => 1
         ]);

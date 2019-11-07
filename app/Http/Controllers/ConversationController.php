@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Medium;
+
+use Auth;
+
+use Session;
+
+use App\Conversation;
+
 use Illuminate\Http\Request;
 
 class ConversationController extends Controller
@@ -21,10 +29,11 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
+   public function create() {
+       $medium = Medium::all();
+       return view('converse', compact('medium'));
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +43,12 @@ class ConversationController extends Controller
      */
     public function store(Request $request)
     {
-        $medium = Medium::create($this->validateRequest());
+        $medium = Medium::create($this->validateRequestMed());
 
+        $conversation = Conversation::create($this->validateRequestCon());
+
+        Session::flash('success', 'Conversation created successfully.');
+        return redirect()->back();
     }
 
     /**
@@ -83,7 +96,7 @@ class ConversationController extends Controller
         //
     }
 
-    private function validateRequest() {
+    private function validateRequestMed() {
 
         return request()->validate([
 
@@ -91,6 +104,18 @@ class ConversationController extends Controller
             'content' => 'required',
             'user_id' => 'required',
             'medium_id' => 'required'
+        ]);
+    }
+
+    private function validateRequestCon() {
+
+        return request()->validate([
+
+            'title' => 'required',
+           'content' => 'required',
+           'medium_id' => 'required',
+           'user_id' => Auth::id(),
+           'slug' => str_slug(title)
         ]);
     }
 }
