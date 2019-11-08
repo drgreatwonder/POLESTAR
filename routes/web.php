@@ -24,6 +24,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/platforms', [
+
+    'uses' => 'PlatFormController@index',
+    'as' => 'platforms'
+]);
+// 'HomeController@index')->name('platforms');
+
 Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('medium', 'MediumController');

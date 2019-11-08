@@ -60,6 +60,7 @@ class ConversationController extends Controller
             'content' => $r->content,
             'medium_id' => $r->medium_id,
             'user_id' => Auth::id(),
+            'avatar' => $r->avatar,
             'slug' => str_slug($r->title)
 
         ]);

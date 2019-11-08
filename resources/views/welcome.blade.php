@@ -62,13 +62,13 @@
                           PLATFORMS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ route('login') }}">Faith</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Fashion</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Life Issues</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Programming</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Sports</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Travels & Tours</a>
-                          <a class="dropdown-item" href="{{ route('login') }}">Trending</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Faith</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Fashion</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Life Issues</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Programming</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Sports</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Travels & Tours</a>
+                          <a class="dropdown-item" href="{{ route('platforms') }}">Trending</a>
                         </div>
 
 

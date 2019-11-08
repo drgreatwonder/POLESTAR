@@ -19,6 +19,14 @@ class UserstableSeeder extends Seeder
             'email' => 'diamondheartconcepts@gmail.com',
             'admin' => 1
         ]);
-    }
-}
 
+        App\User::create([
+
+            'name' => 'Mary',
+            'avatar' => asset('avatars/asian-girl-avatar-vector-20779172'),
+            'password' => bcrypt('password'),
+            'email' => 'tobiprecious13@gmail.com',
+        ]);
+    }
+
+}

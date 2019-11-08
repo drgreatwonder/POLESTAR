@@ -78,13 +78,13 @@
 
             <div class="container">
 
-                <div class="col-md-4 pb-3">
+                <div class="row">
 
-                        <a href="{{ route('conversations.create') }}" class="form-control btn btn-primary my-4">Create a New Conversation</a>
+                    <div class="col-md-4">
 
-                        <br>
-                        <br>
-                        
+                        <a href="{{ route('conversations.create') }}" class="form-control btn btn-primary my-4">Create a New Conversation
+                        </a>
+
                         <div class="panel panel-default">
 
                             <div class="card-header text-center">PlatForms</div>
@@ -100,21 +100,26 @@
                                     </li>
 
                                     @endforeach
-                                    {{-- @yield('table') --}}
+
                                 </ul>
+
                             </div>
                         </div>
+
+
+                    </div> {{-- col-md-4 --}}
+
+
+                    <div class="col-md-8 my-3">
+                        @yield('content')
                     </div>
 
-                </div>
+                </div> {{-- row --}}
 
-                <div class="col-md-8">
-
-                     @yield('content')
-                    </div>
-            </div>
+            </div> {{-- container --}}
 
         </main>
+
     </div>
 </body>
 </html>

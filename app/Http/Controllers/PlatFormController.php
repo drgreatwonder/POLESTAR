@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversation;
+
 use Illuminate\Http\Request;
 
-class ResponseController extends Controller
+class PlatFormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,12 @@ class ResponseController extends Controller
      */
     public function index()
     {
-        //
+        $conversation = Conversation::orderBy('created_at', 'desc')->paginate(6);
+
+        // dd($conversation);
+
+        return view('platforms', ['conversation' => $conversation]);
+
     }
 
     /**
@@ -23,23 +30,7 @@ class ResponseController extends Controller
      */
     public function create()
     {
-        $r = request();
-        $this->validate($r, [
-
-            'content' => 'required',
-            'user_id' =>'required',
-            'conversation_id' => 'required'
-        ]);
-
-        $conversation = Response::create([
-
-            'content' => $r->content,
-            'user_id' => $r->user_id,
-            'conversation_id' => $r->conversation_id,
-
-        ]);
-
-       
+        //
     }
 
     /**
@@ -50,7 +41,7 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
-        // $medium = Medium::create($this->validateRequest());
+        //
     }
 
     /**
@@ -97,17 +88,4 @@ class ResponseController extends Controller
     {
         //
     }
-
-    // private function validateRequest() {
-
-    //     return request()->validate([
-
-    //         'content' => 'required',
-    //         'user_id' => 'required',
-    //         'conversation_id' => 'required'
-
-    //     ]);
-    // }
 }
-
-
