@@ -32,7 +32,7 @@
                            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
                        </div>
                        <div class="form-group">
-                           <button class="btn btn-success pull-right" type="submit">Create Conversation</button>
+                           <button class="btn btn-success float-right" type="submit">Create Conversation</button>
                        </div>
                    </form>
                </div>

@@ -87,9 +87,9 @@
 
                         <div class="panel panel-default">
 
-                            <div class="card-header text-center">PlatForms</div>
-
                             <div class="panel-body pt-2">
+
+                                    <div class="card-header text-center">PlatForms</div>
 
                                 <ul class="list-group">
 

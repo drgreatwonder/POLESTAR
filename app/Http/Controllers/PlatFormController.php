@@ -15,9 +15,7 @@ class PlatFormController extends Controller
      */
     public function index()
     {
-        $conversation = Conversation::orderBy('created_at', 'desc')->paginate(6);
-
-        // dd($conversation);
+        $conversation = Conversation::orderBy('created_at', 'desc')->paginate(5);
 
         return view('platforms', ['conversation' => $conversation]);
 

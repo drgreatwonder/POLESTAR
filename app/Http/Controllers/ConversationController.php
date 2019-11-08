@@ -83,7 +83,7 @@ class ConversationController extends Controller
     public function show($slug)
     {
 
-        return view('conversations.show')->with('conversation', Conversation::where('slug', $slug)->first());
+        return view('conversations.show')->with('c', Conversation::where('slug', $slug)->first());
 
     }
 
