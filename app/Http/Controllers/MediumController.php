@@ -54,7 +54,8 @@ class MediumController extends Controller
 
         Medium::create([
 
-            'title' => $request->medium
+            'title' => $request->medium,
+            'slug' => str_slug($request->medium)
         ]);
 
         Session::flash('success', 'PlatForm created.');
@@ -97,6 +98,7 @@ class MediumController extends Controller
     {
         $medium = Medium::find($id);
         $medium->title = $request->medium;
+        $medium->slug = str_slug($request->medium);
         $medium->save();
 
         Session::flash('success', 'Platform edited successfully');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Conversation;
 
+use App\Medium;
+
 use Illuminate\Http\Request;
 
 class PlatFormController extends Controller
@@ -19,6 +21,13 @@ class PlatFormController extends Controller
 
         return view('platforms', ['conversation' => $conversation]);
 
+    }
+
+    public function medium($slug) {
+
+        $medium = Medium::where('slug', $slug)->first();
+
+        return view('medium')->with('conversations', $medium->conversations()->paginate(5));
     }
 
     /**

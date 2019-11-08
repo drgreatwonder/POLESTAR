@@ -21,6 +21,12 @@ Route::get('conversation/{slug}', [
     'as' => 'conversation'
 ]);
 
+Route::get('medium/{slug}', [
+
+    'uses' => 'PlatFormController@medium',
+    'as' => 'medium'
+]);
+
 
 Auth::routes();
 

@@ -96,7 +96,9 @@
                                     @foreach ($medium as $media)
 
                                     <li class="list-group-item">
-                                        {{ $media->title }}
+                                        {{-- {{ $media->title }} to echo out channel title --}}
+
+                                        <a href="{{ route('medium', ['slug' => $media->slug]) }}">{{ $media->title }}</a>
                                     </li>
 
                                     @endforeach

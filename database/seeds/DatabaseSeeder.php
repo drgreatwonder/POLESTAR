@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ConversationTableSeeder::class);
 
+        $this->call(MediumTableSeeder::class);
+
 }
 
 }
