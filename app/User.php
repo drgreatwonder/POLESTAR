@@ -41,4 +41,9 @@ class User extends Authenticatable
 
         return $this->hasMany('App\Conversation');
     }
+
+    // public function response() {
+
+    //     return $this->belongsTo('App\Like');
+    // }
 }

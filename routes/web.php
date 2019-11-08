@@ -15,30 +15,43 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/converse', function() {
+Route::get('conversation/{slug}', [
 
-    return view('/converse');
-});
+    'uses' => 'ConversationController@show',
+    'as' => 'conversation'
+]);
+
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-Route::get('/platforms', [
-
-    'uses' => 'PlatFormController@index',
-    'as' => 'platforms'
-]);
 // 'HomeController@index')->name('platforms');
 
-Route::group(['middleware' => 'auth'], function() {
+
+Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('medium', 'MediumController');
+
 
     Route::get('conversation/create', [
 
         'uses' => 'ConversationController@create',
         'as' => 'conversations.create'
+    ]);
+
+
+    Route::get('/converse', function () {
+
+        return view('/converse');
+    });
+
+
+
+    Route::get('/platforms', [
+
+        'uses' => 'PlatFormController@index',
+        'as' => 'platforms'
     ]);
 
 
@@ -49,16 +62,24 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'conversations.store'
     ]);
 
-
-    Route::get('conversation/{slug}', [
-
-        'uses' => 'ConversationController@show',
-        'as' => 'conversation'
-    ]);
-
     Route::post('/conversation/response/{id}', [
 
         'uses' => 'ConversationController@response',
         'as' => 'conversation.response'
     ]);
+
+
+    Route::get('/response/like/{id}', [
+
+        'uses' => 'ResponsesController@like',
+        'as' => 'response.like'
+    ]);
+
+
+    Route::get('/response/unlike/{id}', [
+
+        'uses' => 'ResponsesController@unlike',
+        'as' => 'response.unlike'
+    ]);
+
 });

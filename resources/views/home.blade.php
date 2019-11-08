@@ -93,7 +93,7 @@
                             </li>
 
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}" aria-disabled="true">DASHBOARD</a>
+                                <a class="nav-link" href="{{ route('dashboard') }}" aria-disabled="true">DASHBOARD</a>
                           </li>
 
                         <li class="nav-item">
