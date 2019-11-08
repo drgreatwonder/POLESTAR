@@ -55,4 +55,10 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'ConversationController@show',
         'as' => 'conversation'
     ]);
+
+    Route::post('/conversation/response/{id}', [
+
+        'uses' => 'ConversationController@response',
+        'as' => 'conversation.response'
+    ]);
 });

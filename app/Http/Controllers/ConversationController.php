@@ -8,6 +8,8 @@ use Auth;
 
 use Session;
 
+use App\Response;
+
 use App\Conversation;
 
 use Illuminate\Http\Request;
@@ -119,6 +121,22 @@ class ConversationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function response($id) {
+
+        $c = Conversation::find($id);
+
+        $response = Response::create([
+
+            'user_id' => Auth::id(),
+            'conversation_id' => $id,
+            'content' => request()->response
+        ]);
+
+        Session::flash('success', 'Responded to the Conversation');
+
+        return redirect()->back();
     }
 
     // private function validateRequestMed() {

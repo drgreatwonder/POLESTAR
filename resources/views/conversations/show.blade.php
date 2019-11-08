@@ -49,19 +49,10 @@
 
         <span> {{ $r->user->name }}, <b>{{ $r->created_at->diffForHumans() }} </span>
 
-        {{-- <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">view</a></span> --}}
-
 
     </div>
 
     <div class="card-body m-5">
-
-        {{-- <h4 class="text-center">
-
-            {{ $r->content }}
-        </h4>
-
-        <hr> --}}
 
         <p class="text-center">
 
@@ -78,4 +69,34 @@
         </div>
 </div>
 @endforeach
+
+<div class="card my-5">
+
+        <div class="card-header">
+
+                <div class="card-body m-5">
+
+                    <form action="{{ route('conversation.response', ['id' => $c->id ])}}" method="post">
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+
+                        <label for="response">Leave a Response</label>
+
+                        <textarea name="response" id="response" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="text-center">
+                            <button class="btn float-right">Leave a Response</button>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+        </div>
+
+</div>
 @endsection

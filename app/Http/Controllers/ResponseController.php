@@ -39,7 +39,7 @@ class ResponseController extends Controller
 
         ]);
 
-       
+
     }
 
     /**
