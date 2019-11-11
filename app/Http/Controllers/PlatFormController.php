@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use App\Conversation;
 
 use App\Medium;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Pagination\Paginator;
 
 class PlatFormController extends Controller
 {
@@ -17,9 +21,53 @@ class PlatFormController extends Controller
      */
     public function index()
     {
-        $conversation = Conversation::orderBy('created_at', 'desc')->paginate(5);
+        // $conversation = Conversation::orderBy('created_at', 'desc')->paginate(5);
 
-        return view('platforms', ['conversation' => $conversation]);
+        switch (request('filter')) {
+
+            case 'me':
+
+            $results = Conversation::where('user_id', Auth::id())->paginate(5);
+
+            break;
+
+            case 'solved':
+
+                $answered = array();
+
+                foreach(Conversation::all() as $c) {
+
+                    if($c->hasBestAnswer()) {
+
+                        array_push($answered, $c);
+                    }
+                }
+
+                $results = new Paginator($answered, 3);
+            break;
+
+            case 'unsolved':
+
+            $unanswered = array();
+
+                foreach(Conversation::all() as $c) {
+
+                    if(!$c->hasBestAnswer()) {
+
+                        array_push($unanswered, $c);
+                    }
+                }
+
+                $results = new Paginator($unanswered, 3);
+            break;
+
+            default:
+
+                $results = Conversation::orderBy('created_at', 'desc')->paginate(5);
+            break;
+        }
+
+        return view('platforms', ['conversation' => $results]);
 
     }
 

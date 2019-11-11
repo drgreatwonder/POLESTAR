@@ -53,4 +53,21 @@ class Conversation extends Model
             return false;
         }
     }
+
+    public function hasBestAnswer() {
+
+        $result = false;
+
+        foreach($this->responses as $response) {
+
+            if($response->best_answer) {
+
+                $result = true;
+
+                break;
+            }
+        }
+
+        return $result;
+    }
 }

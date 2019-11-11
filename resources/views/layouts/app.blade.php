@@ -110,6 +110,21 @@
 
                                             <a href="/platforms">Home</a>
                                         </div>
+
+                                        <div class="list-group-item">
+
+                                                <a href="/platforms?filter=me">My Conversations</a>
+                                            </div>
+
+                                            <div class="list-group-item">
+
+                                                    <a href="/platforms?filter=solved">Concluded Conversations</a>
+                                                </div>
+
+                                                <div class="list-group-item">
+
+                                                        <a href="/platforms?filter=unsolved">Open Conversations</a>
+                                                    </div>
                                     </ul>
                                 </div>
                         </div>
