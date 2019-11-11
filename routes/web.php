@@ -99,4 +99,10 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'conversation.unwatch'
     ]);
 
+    Route::get('/responses/best/reponse{id}', [
+
+        'uses' => 'ResponsesController@best_answer',
+        'as' => 'response.best.answer'
+    ]);
+
 });

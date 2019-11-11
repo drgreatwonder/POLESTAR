@@ -7,7 +7,9 @@
         <div class="card-header">
         <img src="{{ '../avatars/' . $c->user->avatar }}" alt="" width="40px" height="40px">&nbsp; &nbsp; &nbsp;
 
-        <span> {{ $c->user->name }}, <b>{{ $c->created_at->diffForHumans() }} </span>
+        <span> {{ $c->user->name }}, <b>({{ $c->user->points." ".'points' }})</b></span>
+
+            {{-- <span> {{ $c->user->name }}, {{ $c->created_at->diffForHumans() }}</span> --}}
 
         {{-- <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">watch</a></span> --}}
 
@@ -38,10 +40,39 @@
             {{ $c->content }}
         </p>
 
+        <hr>
+
+
+        @if($best_answer)
+
+        <div class="text-center p-3">
+
+            <h4 class="text-center">BEST ANSWER</h4>
+
+            <div class="card card-success p-3">
+
+                <div class="card-heading p-2">
+
+                    <img src="{{ '../avatars/' . $best_answer->user->avatar }}" alt="" width="40px" height="40px">&nbsp; &nbsp; &nbsp;
+
+                    <span> {{ $best_answer->user->name }}<b class="pl-1">({{ $best_answer->user->points." ".'points' }})</b></span>
+                </div>
+
+                <div class="card-body">
+
+                    {{$best_answer->content}}
+                </div>
+            </div>
+        </div>
+
+        {{-- <a href="{{ route('response.best.answer', ['id' => $r->id])}}" class="btn btn-info float-right">Mark as best answer</a> --}}
+
+        @endif
     </div>
     <div class="card-footer">
 
             <p>
+                    <span class="float-right">{{ $c->created_at->diffForHumans() }}</span>
 
                 {{-- {{ count($c->responses) }} Responses or the one below--}}
 
@@ -59,8 +90,18 @@
         <div class="card-header">
         <img src="{{ '../avatars/' . $r->user->avatar }}" alt="" width="40px" height="40px">&nbsp; &nbsp; &nbsp;
 
-        <span> {{ $r->user->name }}, <b>{{ $r->created_at->diffForHumans() }} </span>
+        {{-- <span> {{ $r->user->name }} <b>{{ $r->created_at->diffForHumans() }} </span><b>({{ $c->user->points." ".'points' }})</b> --}}
 
+        <span> {{ $r->user->name }}, <b>({{ $r->user->points." ".'points' }})</b></span>
+
+        @if(!$best_answer)
+
+            @if(Auth::id() == $c->user->id)
+
+        <a href="{{ route('response.best.answer', ['id' => $r->id])}}" class="btn btn-info float-right">Mark as best answer</a>
+
+            @endif
+        @endif
 
     </div>
 
@@ -75,7 +116,7 @@
     <div class="card-footer">
 
             <p>
-
+                    <span class="float-right">{{ $c->created_at->diffForHumans() }}</span>
             </p>
         </div>
 </div>

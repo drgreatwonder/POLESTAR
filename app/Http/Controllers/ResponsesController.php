@@ -105,6 +105,23 @@ class ResponsesController extends Controller
         return redirect()->back();
     }
 
+    public function best_answer($id) {
+
+        $response = Response::find($id);
+
+        $response->best_answer = 1;
+
+        $response->save();
+
+        $response->user->points += 100;
+
+        $response->user->save();
+
+        Session::flash('success', 'Response has been marked as best answer');
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

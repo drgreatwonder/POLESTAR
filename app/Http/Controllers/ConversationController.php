@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Medium;
-
 use Auth;
 
 use Session;
 
+use App\User;
+
 use App\Response;
 
+// use App\Notification;
+// use App\Http\Controllers\Notification;
+
 use App\Conversation;
+
+use App\Medium;
+
+use App\Notifications\NewResponseAdded;
 
 use Illuminate\Http\Request;
 
@@ -84,10 +91,14 @@ class ConversationController extends Controller
      */
     public function show($slug)
     {
+        $conversation = Conversation::where('slug', $slug)->first();
 
-        return view('conversations.show')->with('c', Conversation::where('slug', $slug)->first());
+        $best_answer = $conversation->responses()->where('best_answer', 1)->first();
+
+        return view('conversations.show')->with('c', $conversation)->with('best_answer', $best_answer);
 
     }
+    // Conversation::where('slug', $slug)->first());
 
     /**
      * Show the form for editing the specified resource.
@@ -133,6 +144,22 @@ class ConversationController extends Controller
             'conversation_id' => $id,
             'content' => request()->response
         ]);
+
+        $response->user->points += 25;
+        $response->user->save();
+
+        $watchers = array();
+
+        foreach($c->watchers as $watcher):
+
+            array_push($watchers, User::find($watcher->user_id));
+        endforeach;
+
+        // Notification::send($watchers, new NewResponseAdded($watcher->user_id));
+
+        // Notification::send($watchers, new \App\Notifications\NewResponseAdded($c));
+
+        // $watchers->notify(new  NewResponseAdded($watcher));
 
         Session::flash('success', 'Responded to the Conversation');
 
