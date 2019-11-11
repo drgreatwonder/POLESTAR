@@ -117,7 +117,22 @@
 
             <p>
                     <span class="float-right">{{ $c->created_at->diffForHumans() }}</span>
-            </p>
+
+            <span class="float-left">
+
+                @if($r->is_liked_by_auth_user())
+
+            <a href="{{ route('response.unlike', ['id' => $r->id]) }}" class="btn btn-danger">Unlike<span class="badge badge-light ml-1">{{ $r->likes->count() }}</span></a>
+
+                @else
+
+                    <a href="{{ route('response.like', ['id' => $r->id]) }}" class="btn btn-success">Like<span class="badge badge-light ml-1">{{ $r->likes->count() }}</span></a>
+
+                    {{-- <span class="badge">{{ $r->likes->count()</span> --}}
+                @endif
+            </span>
+
+        </p>
         </div>
 </div>
 @endforeach

@@ -11,6 +11,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+         <script>
+
+            @if(Session::has('success'))
+
+            toastr.success('Success messages');
+
+            //    toastr.success('{{ Session::get('success') }}')
+
+           @endif
+        </script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +31,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
     <div id="app">
@@ -75,6 +89,7 @@
         </nav>
 
         <main class="py-4">
+
 
             <div class="container">
 
