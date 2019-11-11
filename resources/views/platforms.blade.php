@@ -37,7 +37,11 @@
                 {{-- {{ count($c->responses) }} Responses or the one below--}}
 
                 {{ $c->responses->count() }} Responses
+
+                 <a href="{{ route('medium', ['slug' => $c->medium->slug])}}" class="float-right btn btn-default btn-success">{{ $c->medium->title}}</a>
             </p>
+
+
         </div>
 </div>
 

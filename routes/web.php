@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
+
+
 
 Route::get('conversation/{slug}', [
 
@@ -32,6 +34,8 @@ Auth::routes();
 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
+    Route::get('/home', 'HomeController@index')->name('home');
+
 // 'HomeController@index')->name('platforms');
 
 
@@ -40,17 +44,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('medium', 'MediumController');
 
 
-    Route::get('conversation/create', [
+    Route::get('conversation/create/new', [
 
         'uses' => 'ConversationController@create',
         'as' => 'conversations.create'
     ]);
 
-
-    Route::get('/converse', function () {
-
-        return view('/converse');
-    });
 
 
 
@@ -86,6 +85,18 @@ Route::group(['middleware' => 'auth'], function () {
 
         'uses' => 'ResponsesController@unlike',
         'as' => 'response.unlike'
+    ]);
+
+    Route::get('/conversation/watch/{id}', [
+
+        'uses' => 'WatchersController@watch',
+        'as' => 'conversation.watch'
+    ]);
+
+    Route::get('/conversation/unwatch/{id}', [
+
+        'uses' => 'WatchersController@unwatch',
+        'as' => 'conversation.unwatch'
     ]);
 
 });

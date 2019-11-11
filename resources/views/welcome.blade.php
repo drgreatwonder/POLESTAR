@@ -54,23 +54,35 @@
                         @if (Route::has('login'))
                         @auth
                     <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/welcome') }}">WELCOME<span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           PLATFORMS
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ route('platforms') }}">Faith</a>
+                        </a> --}}
+                        {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> --}}
+
+                                {{-- @foreach ($medium as $media)
+
+                                <li class="list-group-item">
+
+
+                                    <a class="dropdown-item" href="{{ route('medium', ['slug' => $media->slug]) }}">{{ $media->title }}</a>
+                                </li>
+
+                                @endforeach --}}
+                          {{-- <a class="dropdown-item" href="{{ route('platforms') }}">Faith</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Fashion</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Life Issues</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Programming</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Sports</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Travels & Tours</a>
                           <a class="dropdown-item" href="{{ route('platforms') }}">Trending</a>
-                        </div>
-
+                        </div> --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/platforms" aria-disabled="true">PLATFORMS</a>
+                          </li>
 
                         <li class="nav-item dropdown">
                               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +109,7 @@
                           </li>
 
                         <li class="nav-item">
-                                <a class="nav-link" href="#" aria-disabled="true">LOGOUT</a>
+                                <a class="nav-link" href="" aria-disabled="true">LOGOUT</a>
                         </li>
 
                     {{-- <li class="nav-item">
@@ -112,24 +124,28 @@
                     @else
 
                     <li class="nav-item links">
-                      <a class="nav-link" href="{{ url('/') }}">HOME<span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{{ url('/welcome') }}">HOME<span class="sr-only">(current)</span></a>
                     </li>
 
 
 
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         PLATFORMS
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('login') }}">Faith</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Fashion</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Life Issues</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Programming</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Sports</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Travels & Tours</a>
-                        <a class="dropdown-item" href="{{ route('login') }}">Trending</a>
-                      </div>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Faith</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Fashion</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Life Issues</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Programming</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Sports</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Travels & Tours</a>
+                        <a class="dropdown-item" href="{{ route('platforms') }}">Trending</a>
+                      </div> --}}
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="/platforms" aria-disabled="true">PLATFORMS</a>
+                      </li>
 
 
                       <li class="nav-item dropdown">

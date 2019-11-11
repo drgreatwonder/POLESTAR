@@ -9,7 +9,17 @@
 
         <span> {{ $c->user->name }}, <b>{{ $c->created_at->diffForHumans() }} </span>
 
-        <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">view</a></span>
+        {{-- <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">watch</a></span> --}}
+
+        @if($c->is_being_watched_by_auth_user())
+
+        <span><a href="{{ route('conversation.unwatch', ['id' => $c->id ])}}" class="btn btn-success float-right">unwatch</a></span>
+
+        @else
+
+        <span><a href="{{ route('conversation.watch', ['id' => $c->id ])}}" class="btn btn-success float-right">watch</a></span>
+
+        @endif
 
 
     </div>
@@ -35,7 +45,9 @@
 
                 {{-- {{ count($c->responses) }} Responses or the one below--}}
 
-                {{ $c->responses->count() }} Responses
+                {{-- {{ $c->responses->count() }} Responses --}}
+
+
             </p>
         </div>
 </div>
@@ -63,15 +75,7 @@
     <div class="card-footer">
 
             <p>
-                @if($r->is_liked_by_auth_user())
 
-                <a href="{{ route('response.unlike', ['id' => $r->id ]) }}" class="btn btn-danger btn-xs">Unlike<span class="badge">{{ $r->likes->count()}}</span></a>
-
-                @else
-
-                <a href="{{ route('response.like', ['id' => $r->id ]) }}" class="btn btn-success">Like <span class="badge">{{ $r->likes->count()}}</span></a>
-
-                @endif
             </p>
         </div>
 </div>
@@ -83,7 +87,35 @@
 
                 <div class="card-body m-5">
 
+                    @if(Auth::check())
+
                     <form action="{{ route('conversation.response', ['id' => $c->id ])}}" method="post">
+                            {{ csrf_field() }}
+
+                            <div class="form-group">
+
+                                <label for="response">Leave a Response</label>
+
+                                <textarea name="response" id="response" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="text-center">
+                                    <button class="btn float-right btn-success">Leave a Response</button>
+                                </div>
+                            </div>
+                            </form>
+
+                    @else
+
+                    <div class="text-center">
+
+                        <h2>Sign In to Leave a Response</h2>
+                    </div>
+
+                    @endif
+                    {{-- <form action="{{ route('conversation.response', ['id' => $c->id ])}}" method="post">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -99,7 +131,7 @@
                             <button class="btn float-right">Leave a Response</button>
                         </div>
                     </div>
-                    </form>
+                    </form> --}}
 
                 </div>
 

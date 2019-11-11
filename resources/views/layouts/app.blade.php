@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/welcome') }}">
                     <h3>{{ config('app.name', 'PoleStar') }}</h3>
                 </a>
                 {{-- <h3>PoleStar</h3> --}}
@@ -85,11 +85,25 @@
                         <a href="{{ route('conversations.create') }}" class="form-control btn btn-primary my-4">Create a New Conversation
                         </a>
 
-                        <div class="panel panel-default">
+                        <div class="card mb-3 p-2">
 
-                            <div class="panel-body pt-2">
+                             <div class="card-body">
 
-                                    <div class="card-header text-center">PlatForms</div>
+                                    <ul class="list-group">
+
+                                        <div class="list-group-item">
+
+                                            <a href="/platforms">Home</a>
+                                        </div>
+                                    </ul>
+                                </div>
+                        </div>
+
+                        <div class="card mt-4">
+
+                                <div class="card-header text-center">PlatForms</div>
+
+                            <div class="card-body pt-2 py-4">
 
                                 <ul class="list-group">
 
