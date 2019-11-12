@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
+use Session;
+
+use App\Like;
+
+use App\Response;
+
 use Illuminate\Http\Request;
 
 class ResponseController extends Controller
@@ -72,7 +80,7 @@ class ResponseController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('responses.edit', ['response' => Response::find($id)]);
     }
 
     /**
@@ -82,9 +90,22 @@ class ResponseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $this->validate(request(), [
+
+            'content' => 'required'
+        ]);
+
+        $response = Response::find($id);
+
+        $response->content = request()->content;
+
+        $response->save();
+
+        Session::flash('success', 'Response Updated.');
+
+        return redirect()->route('conversation', ['slug' => $response->conversation->slug]);
     }
 
     /**

@@ -19,7 +19,7 @@
 
             toastr.success('Success messages');
 
-            //    toastr.success('{{ Session::get('success') }}')
+               toastr.success('{{ Session::get('success') }}')
 
            @endif
         </script>
@@ -126,8 +126,48 @@
                                                         <a href="/platforms?filter=unsolved">Open Conversations</a>
                                                     </div>
                                     </ul>
+
+                                    @if(Auth::check())
+
+                                    @if(Auth::user()->admin)
+
+                                    <div class="list-group-item mt-5">
+
+                                        <a href="/medium">All PlatForms</a>
+                                    </div>
+
+                                    @endif
+
+                                    @endif
                                 </div>
                         </div>
+
+
+{{--
+                            <div class="container">
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+
+                                         <div class="card mb-3 p-2">
+
+                                            <div class="card-body">
+
+                                                <ul class="list-group">
+
+                                                    <div class="list-group-item">
+
+                                                        <a href="/platforms">Home</a>
+                                                    </div>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
 
                         <div class="card mt-4">
 

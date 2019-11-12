@@ -106,9 +106,9 @@ class ConversationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        return view('conversations.edit', ['conversation' => Conversation::where('slug', $slug)->first() ]);
     }
 
     /**
@@ -120,7 +120,20 @@ class ConversationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+
+            'content' => 'required'
+        ]);
+
+        $c = Conversation::find($id);
+
+        $c->content = request()->content;
+
+        $c->save();
+
+        $request->session()->flash('success', 'Conversation updated');
+
+        return redirect()->route('conversation', ['slug' => $c->slug]);
     }
 
     /**

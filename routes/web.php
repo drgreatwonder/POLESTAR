@@ -105,4 +105,30 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'response.best.answer'
     ]);
 
+    Route::get('/conversations/edit/{slug}', [
+
+        'uses' => 'ConversationController@edit',
+
+        'as' => 'conversation.edit'
+    ]);
+
+    Route::post('/conversations/update/{id}', [
+
+        'uses' => 'ConversationController@update',
+
+        'as' => 'conversations.update'
+    ]);
+
+    Route::get('/response/edit/{id}', [
+
+        'uses' => 'ResponseController@edit',
+        'as' => 'response.edit'
+    ]);
+
+    Route::post('/response/update/{id}', [
+
+        'uses' => 'ResponseController@update',
+        'as' => 'response.update'
+    ]);
+
 });

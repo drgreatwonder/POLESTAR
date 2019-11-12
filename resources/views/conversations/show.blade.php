@@ -13,6 +13,27 @@
 
         {{-- <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">watch</a></span> --}}
 
+        @if($c->hasBestAnswer())
+
+        <span class="btn float-right btn-danger ml-2">Concluded</span>
+
+        @else
+
+        <span class="btn float-right btn-info ml-2">OPEN</span>
+
+        @endif
+
+        @if(Auth::id() == $c->user->id)
+
+        @if(!$c->hasBestAnswer())
+
+        <span><a href="{{ route('conversation.edit', ['slug' => $c->slug ])}}" class="btn btn-info float-right ml-2">Edit</a></span>
+
+        @endif
+
+        @endif
+        {{-- <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right ml-2">view</a></span> --}}
+
         @if($c->is_being_watched_by_auth_user())
 
         <span><a href="{{ route('conversation.unwatch', ['id' => $c->id ])}}" class="btn btn-success float-right">unwatch</a></span>
@@ -98,10 +119,18 @@
 
             @if(Auth::id() == $c->user->id)
 
-        <a href="{{ route('response.best.answer', ['id' => $r->id])}}" class="btn btn-info float-right">Mark as best answer</a>
+        <a href="{{ route('response.best.answer', ['id' => $r->id])}}" class="btn btn-primary float-right ml-2">Mark as best answer</a>
 
             @endif
         @endif
+
+        @if(Auth::id() == $r->user->id)
+
+                @if(!$r->best_answer)
+
+                <a href="{{ route('response.edit', ['id' => $r->id])}}" class="btn btn-info float-right">Edit</a>
+                @endif
+            @endif
 
     </div>
 

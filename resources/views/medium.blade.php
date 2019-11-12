@@ -12,8 +12,18 @@
         <img src="{{ '../avatars/' . $c->user->avatar }}" alt="" width="40px" height="40px">&nbsp; &nbsp; &nbsp;
 
         <span> {{ $c->user->name }}, <b>{{ $c->created_at->diffForHumans() }} </span>
+            
+            @if($c->hasBestAnswer())
 
-        <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">view</a></span>
+            <span class="btn float-right btn-danger ml-2">Concluded</span>
+
+            @else
+
+            <span class="btn float-right btn-info ml-2">OPEN</span>
+
+            @endif
+
+            <span><a href=" {{ route('conversation', ['slug' => $c->slug ])}} " class="btn btn-success float-right">view</a></span>
 
 
     </div>
