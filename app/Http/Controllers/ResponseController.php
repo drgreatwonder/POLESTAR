@@ -106,6 +106,8 @@ class ResponseController extends Controller
         Session::flash('success', 'Response Updated.');
 
         return redirect()->route('conversation', ['slug' => $response->conversation->slug]);
+
+
     }
 
     /**

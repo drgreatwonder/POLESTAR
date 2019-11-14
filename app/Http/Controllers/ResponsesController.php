@@ -117,7 +117,7 @@ class ResponsesController extends Controller
 
         $response->user->save();
 
-        Session::flash('success', 'Response has been marked as best answer');
+        Session::flash('success', 'This response has been marked as best answer');
 
         return redirect()->back();
     }

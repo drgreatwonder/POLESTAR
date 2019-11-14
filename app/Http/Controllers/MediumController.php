@@ -86,10 +86,32 @@ class MediumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    // public function edit($id)
+    // {
+    //     $medium = Medium::find($id);
+
+        // $slug = str_slug($request->medium);
+
+    //     return view('medium.edit',compact('medium') );
+
+
+    // }
+
+    public function edit(Request $id, $slug) {
+
         $medium = Medium::find($id);
+
+        // $medium = Medium::find($slug);
+
+
+
+        $medium = Medium::where('slug', $slug)->first();
+
+        // $medium->title = $request->medium;
+
         return view('medium.edit',compact('medium') );
+
+
     }
 
     /**

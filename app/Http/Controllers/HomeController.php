@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
+use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +28,30 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+    // public function store() {
+
+    //     $user = User::create($this->Validator());
+
+    //     $this->storeAvatar($user);
+
+    //     return redirect('dashboard');
+    // }
+
+    // private function storeAvatar($user) {
+
+    //     if(request()->has('avatar')) {
+
+    //         $user->update([
+
+    //             'avatar' => request()->avatar->store('avatars', 'public'),
+    //         ]);
+    //     }
+    // }
+
+    public function edit($id)
+    {
+        return view('edit', ['user' => User::find($id)]);
     }
 }

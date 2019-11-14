@@ -1,23 +1,41 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+<div class="container my-5">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <!-- Card -->
+<div class="card testimonial-card">
 
-                    You are logged in!
-                </div>
-            </div>
+        <!-- Background color -->
+        <div class="card-up indigo lighten-1"></div>
+
+        <!-- Avatar -->
+        <div class="avatar mx-auto white">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle" alt="woman avatar">
         </div>
-    </div>
+
+        <!-- Content -->
+        <div class="card-body">
+          <!-- Name -->
+          <h4 class="card-title">{{Auth::user()->name}}</h4>
+          <hr>
+          <!-- Quotation -->
+          <label>Email:</label><span class="px-3"><p> {{Auth::user()->email}}</p>
+        <hr>
+
+        <label>Hobby:</label><span class="px-3"><p>{{Auth::user()->hobby}}</p>
+            <hr>
+
+            <label>Country:</label><span class="px-3"><p>{{Auth::user()->country}}</p>
+                <hr>
+
+                <label>About Me:</label><span class="px-3"><p>{{Auth::user()->about_me}}</p>
+
+        </div>
+
+        <div class="card-footer bg-secondary text-center"> <p>Joined {{ Auth::user()->created_at->diffForHumans() }}</p></div>
+      </div>
+      <!-- Card -->
+
+
 </div>
 @endsection

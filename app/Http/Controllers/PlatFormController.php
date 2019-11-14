@@ -14,6 +14,11 @@ use Illuminate\Pagination\Paginator;
 
 class PlatFormController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

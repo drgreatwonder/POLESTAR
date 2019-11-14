@@ -58,7 +58,9 @@
 
         <p class="text-center">
 
-            {{ $c->content }}
+           {!! Markdown::convertToHtml($c->content) !!}
+
+            {{-- {{ $c->content }} --}}
         </p>
 
         <hr>
@@ -81,7 +83,8 @@
 
                 <div class="card-body">
 
-                    {{$best_answer->content}}
+                    {!! Markdown::convertToHtml($best_answer->content) !!}
+                    {{-- {{$best_answer->content}} --}}
                 </div>
             </div>
         </div>
@@ -138,7 +141,9 @@
 
         <p class="text-center">
 
-            {{ $r->content }}
+            {{-- {{ $r->content }} --}}
+
+            {!! Markdown::convertToHtml($r->content) !!}
         </p>
 
     </div>
@@ -151,7 +156,7 @@
 
                 @if($r->is_liked_by_auth_user())
 
-            <a href="{{ route('response.unlike', ['id' => $r->id]) }}" class="btn btn-danger">Unlike<span class="badge badge-light ml-1">{{ $r->likes->count() }}</span></a>
+            <a href="{{ route('response.unlike', ['id' => $r->id]) }}" class="btn btn-danger">Unlike<span class="badge badge-light ml-1"></span></a>
 
                 @else
 
@@ -223,4 +228,6 @@
         </div>
 
 </div>
+
+
 @endsection

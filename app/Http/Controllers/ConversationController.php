@@ -174,7 +174,7 @@ class ConversationController extends Controller
 
         // $watchers->notify(new  NewResponseAdded($watcher));
 
-        Session::flash('success', 'Responded to the Conversation');
+        Session::flash('success', 'You responded to this Conversation');
 
         return redirect()->back();
     }

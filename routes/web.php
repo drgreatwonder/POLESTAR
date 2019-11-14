@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -34,7 +34,17 @@ Auth::routes();
 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
+    Route::get('/{id}/edit', 'HomeController@edit')->name('edit');
+
+
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/platforms', [
+
+        'uses' => 'PlatFormController@index',
+        'as' => 'platforms'
+    ]);
+
 
 // 'HomeController@index')->name('platforms');
 
@@ -49,16 +59,6 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'ConversationController@create',
         'as' => 'conversations.create'
     ]);
-
-
-
-
-    Route::get('/platforms', [
-
-        'uses' => 'PlatFormController@index',
-        'as' => 'platforms'
-    ]);
-
 
 
     Route::post('conversation/store', [
